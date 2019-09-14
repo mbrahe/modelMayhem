@@ -7,8 +7,6 @@ public class SpeakerController : MonoBehaviour
 
     public TextboxController textbox;
 
-    public bool start;
-
     protected int convCounter = 0;
     protected int selection = 0;
 
@@ -20,27 +18,16 @@ public class SpeakerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (start)
-        {
-            Next();
-            start = false;
-        }
-    }
-
     public virtual void StartSpeaking()
     {
+        SetupConversation();
         Next();
     }
 
+    protected virtual void SetupConversation()
+    {
+        return;
+    }
     protected virtual bool Speak()
     {
         return true;
