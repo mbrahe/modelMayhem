@@ -5,13 +5,31 @@ using UnityEngine.UI;
 
 public class TextboxController : MonoBehaviour
 {
+    public float boxWidth = .8f;
+    public float boxHeight = .2f;
+    public float boxYPos = .75f;
+    public int boxFontSize = 30;
+
+    public float choiceRightMargin = .1f;
+    public float choiceWidth = .4f;
+    public float choiceHeight = .05f;
+    public float choiceYPos = .4f;
+
     string textboxText;
-    public bool showTextbox;
-    public bool showChoice;
-    public bool nextTextbox;
+    bool showTextbox;
+    bool showChoice;
+
     SpeakerController currentSpeaker;
     Texture currentPic;
     string[] currentChoices;
+
+    public bool inUse
+    {
+        get
+        {
+            return showTextbox || showChoice;
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -35,12 +53,10 @@ public class TextboxController : MonoBehaviour
 
     void OnGUI()
     {
+        GUI.skin.box.fontSize = boxFontSize;
         if (showTextbox)
         {
-            float width = .8f;
-            float height = .2f;
-            float yPos = .75f;
-            Rect textboxRect = new Rect(Screen.width * (1 - width) / 2, Screen.height * yPos, Screen.width * width, Screen.height * height);
+            Rect textboxRect = new Rect(Screen.width * (1 - boxWidth) / 2, Screen.height * boxYPos, Screen.width * boxWidth, Screen.height * boxHeight);
             GUI.Box(textboxRect, textboxText);
 
             Rect picRect = new Rect(textboxRect.x, textboxRect.y - currentPic.height, currentPic.width, currentPic.height);
@@ -49,13 +65,9 @@ public class TextboxController : MonoBehaviour
 
         if (showChoice)
         {
-            float margin = .1f;
-            float width = .4f;
-            float height = .05f;
-            float yPos = .2f;
             for (int i = 0; i < currentChoices.Length; i++)
             {
-                Rect buttonRect = new Rect((1 - (margin + width)) * Screen.width, yPos * Screen.height + height * Screen.height * i, width * Screen.width, height * Screen.height);
+                Rect buttonRect = new Rect((1 - (choiceRightMargin + choiceWidth)) * Screen.width, choiceYPos * Screen.height + choiceHeight * Screen.height * i, choiceWidth * Screen.width, choiceHeight * Screen.height);
                 if (GUI.Button(buttonRect, currentChoices[i]))
                 {
                     showChoice = false;

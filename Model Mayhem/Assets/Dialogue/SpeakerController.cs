@@ -12,6 +12,14 @@ public class SpeakerController : MonoBehaviour
     protected int convCounter = 0;
     protected int selection = 0;
 
+    public bool isTalking
+    {
+        get
+        {
+            return convCounter != 0;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +34,11 @@ public class SpeakerController : MonoBehaviour
             Next();
             start = false;
         }
+    }
+
+    public virtual void StartSpeaking()
+    {
+        Next();
     }
 
     protected virtual bool Speak()

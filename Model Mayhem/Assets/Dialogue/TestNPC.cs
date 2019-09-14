@@ -16,9 +16,18 @@ public class TestNPC : SpeakerController
                 textbox.NewTextbox("Hello there again!", placeholder, gameObject.GetComponent<SpeakerController>());
                 break;
             case 2:
-                textbox.NewChoice(new string [] { "This is option one", "This is option two"}, gameObject.GetComponent<SpeakerController>());
+                textbox.NewChoice(new string [] {"This is option one", "This is option two"}, gameObject.GetComponent<SpeakerController>());
                 break;
             case 3:
+                if (selection == 0)
+                {
+                    textbox.NewTextbox("You picked option 1", placeholder, gameObject.GetComponent<SpeakerController>());
+                } else
+                {
+                    textbox.NewTextbox("You picked option 2", placeholder, gameObject.GetComponent<SpeakerController>());
+                }
+                break;
+            case 4:
                 return true;
 
         }
