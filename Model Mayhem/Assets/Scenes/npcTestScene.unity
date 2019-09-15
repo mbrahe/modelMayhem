@@ -777,11 +777,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1108619284387370763, guid: e36bac19f53e5ee44bae01ee1b979071,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 1108619284387370761, guid: e36bac19f53e5ee44bae01ee1b979071,
         type: 3}
       propertyPath: myMouse
@@ -791,6 +786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: moveSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108619284387370763, guid: e36bac19f53e5ee44bae01ee1b979071,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1108619284387370760, guid: e36bac19f53e5ee44bae01ee1b979071,
         type: 3}
@@ -1151,6 +1151,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1130907068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6312248192201081486, guid: ff381658a3a89394ab78e54bb03d6793,
+    type: 3}
+  m_PrefabInstance: {fileID: 6312248192090613906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1130907069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130907068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961a64f5403ca4343bd2e5d7b90fa551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textbox: {fileID: 1337309856}
+  pic: {fileID: 2800000, guid: 457338289db46374caafc73c811bf155, type: 3}
 --- !u!1 &1216472066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1276,7 @@ Animator:
   m_GameObject: {fileID: 1422868779}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a72eb903086bf414180c15f1ffe0a471, type: 2}
+  m_Controller: {fileID: 9100000, guid: 43ffcbfaeab488843bf8dd1d3a6ebcd2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1322,7 +1342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422868779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.86, y: 4.39, z: 0}
+  m_LocalPosition: {x: 0.42, y: -2.39, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1349,10 +1369,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422868779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab43e43e2d85c3041bd87cb299550465, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b92bbd46deba3041904b2ec2835bd86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: -1, y: -0.3}
+  direction: {x: -1, y: 0}
+  length: 1
   speed: 2
 --- !u!50 &1422868785
 Rigidbody2D:
@@ -1868,12 +1889,18 @@ PrefabInstance:
       propertyPath: points.Array.data[1]
       value: 
       objectReference: {fileID: 1700658201}
+    - target: {fileID: 6312248192201081521, guid: ff381658a3a89394ab78e54bb03d6793,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6312248192201081487, guid: ff381658a3a89394ab78e54bb03d6793,
         type: 3}
       propertyPath: textbox
       value: 
       objectReference: {fileID: 1337309856}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6312248192201081487, guid: ff381658a3a89394ab78e54bb03d6793, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff381658a3a89394ab78e54bb03d6793, type: 3}
 --- !u!1001 &6815217197393960468
 PrefabInstance:

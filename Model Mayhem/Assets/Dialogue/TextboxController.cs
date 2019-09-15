@@ -59,8 +59,11 @@ public class TextboxController : MonoBehaviour
             Rect textboxRect = new Rect(Screen.width * (1 - boxWidth) / 2, Screen.height * boxYPos, Screen.width * boxWidth, Screen.height * boxHeight);
             GUI.Box(textboxRect, textboxText);
 
-            Rect picRect = new Rect(textboxRect.x, textboxRect.y - currentPic.height, currentPic.width, currentPic.height);
-            GUI.DrawTexture(picRect, currentPic);
+            if (currentPic != null)
+            {
+                Rect picRect = new Rect(textboxRect.x, textboxRect.y - currentPic.height, currentPic.width, currentPic.height);
+                GUI.DrawTexture(picRect, currentPic);
+            }
         }
 
         if (showChoice)

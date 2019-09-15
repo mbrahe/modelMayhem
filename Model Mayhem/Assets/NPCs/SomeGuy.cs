@@ -40,7 +40,7 @@ public class SomeGuy : SpeakerController
             switch (convCounter)
             {
                 case 0:
-                    textbox.NewTextbox("I wonder if I'll ever be cool someday", placeholder, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewTextbox("I wonder if I'll ever be cool someday. I hope I will!", placeholder, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 1:
                     return true;
