@@ -10,10 +10,16 @@ public class protagMove : MonoBehaviour
     public float maxAcceleration = 10f;
     public float xSpeed;
     public float ySpeed;
+    public float stunLength = .6f;
+    public float energyMax = 1;
+    public float energyRegainSpeed = 2;
 
+    bool energyReset;
     bool mouseDown;
     Rigidbody2D rb;
     TextboxController textbox;
+    float stunTimer;
+    public float energy;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +31,12 @@ public class protagMove : MonoBehaviour
     private void Update()
     {
         mouseDown = Input.GetMouseButton(0);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            energyReset = false;
+        }
+        Debug.Log(energy);
     }
 
     void FixedUpdate()
@@ -54,11 +66,38 @@ public class protagMove : MonoBehaviour
 
         //transform.position = new Vector3(transform.position.x + xSpeed, transform.position.y + ySpeed, transform.position.z);
 
-        if (mouseDown && !textbox.inUse)
+        if (!energyReset && mouseDown && !textbox.inUse && energy >= 0 && stunTimer <= 0)
         {
             Vector2 dir = ((Vector2)mousePosition - rb.position) * moveSpeed;
             dir = dir.normalized * Mathf.Min(dir.magnitude, maxAcceleration);
             rb.AddForce(dir);
+            energy -= Time.fixedDeltaTime;
+            if (energy <= 0)
+            {
+                energyReset = true;
+            }
+        } else
+        {
+            energy += energyRegainSpeed * Time.fixedDeltaTime;
+            if (energy > energyMax)
+            {
+                energy = energyMax;
+            }
+        }
+
+        if (stunTimer > 0)
+        {
+            stunTimer -= Time.fixedDeltaTime;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Enemy")
+        {
+            stunTimer = stunLength;
+        }
+    }
+
+
 }
