@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TextboxController : MonoBehaviour
 {
+    public float textPeriod = .1f;
     public float boxWidth = .8f;
     public float boxHeight = .2f;
     public float boxYPos = .75f;
@@ -16,6 +17,9 @@ public class TextboxController : MonoBehaviour
     public float choiceYPos = .4f;
 
     string textboxText;
+    string displayedText;
+    int textCounter;
+    float textTimer;
     bool showTextbox;
     bool showChoice;
 
@@ -35,6 +39,7 @@ public class TextboxController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        textboxText = "";
     }
 
     // Update is called once per frame
@@ -42,11 +47,32 @@ public class TextboxController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && showTextbox && !showChoice)
         {
-            bool done = currentSpeaker.Next();
-            if (done)
+            if (textCounter < textboxText.Length)
             {
-                showTextbox = false;
-                currentSpeaker = null;
+                textCounter = textboxText.Length;
+                displayedText = textboxText;
+            }
+            else
+            {
+                bool done = currentSpeaker.Next();
+                if (done)
+                {
+                    showTextbox = false;
+                    currentSpeaker = null;
+                }
+            }
+        }
+
+        if (textCounter < textboxText.Length)
+        {
+            if (textTimer <= 0)
+            {
+                displayedText = string.Concat(displayedText, textboxText[textCounter]);
+                textCounter++;
+                textTimer = textPeriod;
+            } else
+            {
+                textTimer -= Time.deltaTime;
             }
         }
     }
@@ -54,10 +80,11 @@ public class TextboxController : MonoBehaviour
     void OnGUI()
     {
         GUI.skin.box.fontSize = boxFontSize;
+        GUI.skin.box.alignment = TextAnchor.UpperLeft;
         if (showTextbox)
         {
             Rect textboxRect = new Rect(Screen.width * (1 - boxWidth) / 2, Screen.height * boxYPos, Screen.width * boxWidth, Screen.height * boxHeight);
-            GUI.Box(textboxRect, textboxText);
+            GUI.Box(textboxRect, displayedText);
 
             if (currentPic != null)
             {
@@ -88,6 +115,9 @@ public class TextboxController : MonoBehaviour
     public void NewTextbox(string content, Texture pic, SpeakerController speaker)
     {
         textboxText = content;
+        displayedText = "";
+        textCounter = 0;
+        textTimer = 0;
         showTextbox = true;
         currentSpeaker = speaker;
         currentPic = pic;
