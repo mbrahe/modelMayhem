@@ -23,6 +23,7 @@ public class StoryController : MonoBehaviour
     public bool hasTowel;
     public bool slept;
     public bool showered;
+    public bool hasCigarette;
 
     GameObject player;
 
