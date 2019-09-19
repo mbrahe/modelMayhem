@@ -41,8 +41,9 @@ public class StoryController : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 100, 20), string.Concat("Odor: ", Mathf.FloorToInt(filthiness).ToString()));
-        GUI.Label(new Rect(0, 20, 100, 20), string.Concat("Ennui: ", Mathf.FloorToInt(ennui).ToString()));
+        GUI.skin.label.fontSize = 20;
+        GUI.Label(new Rect(0, 0, 100, 30), string.Concat("Odor: ", Mathf.FloorToInt(filthiness).ToString()));
+        GUI.Label(new Rect(0, 30, 100, 30), string.Concat("Ennui: ", Mathf.FloorToInt(ennui).ToString()));
 
 
         int hour = Mathf.FloorToInt(time);
@@ -55,13 +56,17 @@ public class StoryController : MonoBehaviour
 
         string AMPM = "AM";
 
+        if (hour > 11)
+        {
+            AMPM = "PM";
+        }
+        
         if (hour > 12)
         {
             hour -= 12;
-            AMPM = "PM";
-        } 
+        }
 
-        GUI.Label(new Rect(Screen.width - 100, 0, 100, 20), string.Concat(hour.ToString("00"), ":", minutes.ToString("00"), " ", AMPM));
+        GUI.Label(new Rect(Screen.width - 100, 0, 100, 30), string.Concat(hour.ToString("00"), ":", minutes.ToString("00"), " ", AMPM));
     }
 
     public void Smoke()
