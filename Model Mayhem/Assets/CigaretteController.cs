@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CigaretteController : MonoBehaviour
 {
+    StoryController story;
     // Start is called before the first frame update
     void Start()
     {
-        
+        story = GameObject.FindGameObjectWithTag("Story").GetComponent<StoryController>();
     }
 
     // Update is called once per frame
@@ -20,7 +21,14 @@ public class CigaretteController : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            GameObject.FindGameObjectWithTag("Story").GetComponent<StoryController>().Smoke();
+            if (!story.hasCigarette)
+            {
+                story.hasCigarette = true;
+            }
+            else
+            {
+                story.Smoke();
+            }
             Destroy(gameObject);
         }
     }

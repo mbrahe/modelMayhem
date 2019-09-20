@@ -77,10 +77,27 @@ public class TextboxController : MonoBehaviour
         }
     }
 
+    // https://forum.unity.com/threads/change-gui-box-color.174609/
+    private Texture2D MakeTex(int width, int height, Color col)
+    {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i < pix.Length; ++i)
+        {
+            pix[i] = col;
+        }
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+        return result;
+    }
+
     void OnGUI()
     {
         GUI.skin.box.fontSize = boxFontSize;
         GUI.skin.box.alignment = TextAnchor.UpperLeft;
+        GUI.skin.box.normal.background = MakeTex(2, 2, new Color(0f, 0f, 0f));
+        GUI.skin.label.normal.background = MakeTex(2, 2, new Color(0f, 0f, 0f));
+        GUI.skin.button.normal.background = MakeTex(2, 2, new Color(0f, 0f, 0f));
         if (showTextbox)
         {
             Rect textboxRect = new Rect(Screen.width * (1 - boxWidth) / 2, Screen.height * boxYPos, Screen.width * boxWidth, Screen.height * boxHeight);

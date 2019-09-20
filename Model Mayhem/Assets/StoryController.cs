@@ -32,12 +32,18 @@ public class StoryController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        filthiness = 100;
     }
 
     private void Update()
     {
         time += timeSpeed * Time.deltaTime;
         ennui += ennuiSpeed * Time.deltaTime;
+
+        if (filthiness > 100)
+        {
+            filthiness = 100;
+        }
     }
 
     private void OnGUI()

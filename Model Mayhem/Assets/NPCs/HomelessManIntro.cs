@@ -11,11 +11,13 @@ public class HomelessManIntro : SpeakerController
     bool talkedBefore;
 
     StoryController story;
+    FadeController fade;
 
     private void Start()
     {
         usedConversations = new bool[3];
         story = GameObject.FindGameObjectWithTag("Story").GetComponent<StoryController>();
+        fade = GetComponent<FadeController>();
     }
 
     protected override void SetupConversation()
@@ -23,6 +25,10 @@ public class HomelessManIntro : SpeakerController
         if (!talkedBefore)
         {
             currentConversation = 0;
+            talkedBefore = true;
+        } else if (story.hasCigarette)
+        {
+            currentConversation = 1;
         }
         else
         {
@@ -41,10 +47,10 @@ public class HomelessManIntro : SpeakerController
             switch (convCounter)
             {
                 case 0:
-                    textbox.NewTextbox("Hey there little buddy", pic, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewTextbox("Hey there little buddy.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 1:
-                    textbox.NewTextbox("You know, no one's going to want to\ntalk to you with you smelling so bad", pic, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewTextbox("You know, no one's going to want to\ntalk to you with you smelling so bad.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 2:
                     textbox.NewTextbox("Take it from me, an old pro.", pic, gameObject.GetComponent<SpeakerController>());
@@ -53,7 +59,7 @@ public class HomelessManIntro : SpeakerController
                     textbox.NewTextbox("Sometimes even I must partake of a good bath.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 4:
-                    textbox.NewChoice(new string[] { "I didn't choose to be so dirty", "What's wrong with bathing?" }, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewChoice(new string[] { "I didn't choose to be so dirty", "I don't like bathing" }, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 5:
                     if (selection == 0)
@@ -61,7 +67,7 @@ public class HomelessManIntro : SpeakerController
                         textbox.NewTextbox("What do you mean you didn't choose this?", pic, gameObject.GetComponent<SpeakerController>());
                     } else
                     {
-                        textbox.NewTextbox("Every time you take a bath a tiny bit\nof your soul is washed away into the sewer.", pic, gameObject.GetComponent<SpeakerController>());
+                        textbox.NewTextbox("Yes, I understand that. Whenever you take a bath a\ntiny bit of your soul is washed away into the sewer.", pic, gameObject.GetComponent<SpeakerController>());
                     }
                     break;
                 case 6:
@@ -124,10 +130,10 @@ public class HomelessManIntro : SpeakerController
                     textbox.NewTextbox("Hidden at the bottom of my pocket\nis a certain Special Deodorant.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 14:
-                    textbox.NewTextbox("Though your odor is strong, this deodorant\n will make your stench tolerable. the average person", pic, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewTextbox("Though your odor is strong, this deodorant will\n make your stench tolerable to the average person.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 15:
-                    textbox.NewTextbox("After that you'll need to use your\nown wit to attain true cleanliness.", pic, gameObject.GetComponent<SpeakerController>());
+                    textbox.NewTextbox("After that you'll need to use your own wit\n to attain true cleanliness.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 16:
                     textbox.NewTextbox("All I ask for in return is a cigarette.", pic, gameObject.GetComponent<SpeakerController>());
@@ -152,7 +158,7 @@ public class HomelessManIntro : SpeakerController
                 case 20:
                     if (selection == 0)
                     {
-                        textbox.NewTextbox("Don't worry about that", pic, gameObject.GetComponent<SpeakerController>());
+                        textbox.NewTextbox("Don't worry about that.", pic, gameObject.GetComponent<SpeakerController>());
                     } else
                     {
                         textbox.NewTextbox("That's the spirit.\nI've never had a single choice since birth.", pic, gameObject.GetComponent<SpeakerController>());
@@ -169,6 +175,55 @@ public class HomelessManIntro : SpeakerController
                     }
                     break;
                 case 22:
+                    return true;
+            }
+        } else if (currentConversation == 1)
+        {
+            switch (convCounter)
+            {
+                case 0:
+                    textbox.NewTextbox("You've found one!", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 1:
+                    textbox.NewTextbox("It's a bit soggy, but I don't mind.\nAs promised, I'll give you my Special Deodorant.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 2:
+                    textbox.NewTextbox("But remember, the path to cleanliness--\nIt consists of more than just a little deodorant.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 3:
+                    textbox.NewTextbox("You have a long journey ahead of you.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 4:
+                    textbox.NewTextbox("And by the way--\nYou might want to take up smoking yourself.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 5:
+                    textbox.NewTextbox("It's a crazy world we live in.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 6:
+                    textbox.NewTextbox("Without some release you're sure to become an\nemotional fireball, casting cruelty on the innocent.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 7:
+                    textbox.NewTextbox("It happens to me too sometimes.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 8:
+                    textbox.NewTextbox("A cigarette from time to time should be enough to\nprevent you from saying anything you regret.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 9:
+                    textbox.NewTextbox("Anyways, I must be on my way.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 10:
+                    textbox.NewTextbox("If we meet again, I hope you'll remember me.\nFarewell, little buddy.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 11:
+                    textbox.NewTextbox("...", pic, gameObject.GetComponent<SpeakerController>());
+                    fade.FadeAway(2);
+                    break;
+                case 12:
+                    textbox.NewTextbox("(You use the Special Deodorant)", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 13:
+                    story.filthiness = 20;
+                    Destroy(gameObject);
                     return true;
             }
         }

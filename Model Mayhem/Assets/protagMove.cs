@@ -18,6 +18,7 @@ public class protagMove : MonoBehaviour
     bool mouseDown;
     Rigidbody2D rb;
     TextboxController textbox;
+    SpriteRenderer sr;
     float stunTimer;
     public float energy;
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class protagMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         textbox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<TextboxController>();
+        sr = GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
 
@@ -36,7 +38,13 @@ public class protagMove : MonoBehaviour
         {
             energyReset = false;
         }
-        Debug.Log(energy);
+        if (rb.velocity.x > 0)
+        {
+            sr.flipX = true;
+        } else if (rb.velocity.x < 0)
+        {
+            sr.flipX = false;
+        }
     }
 
     void FixedUpdate()
