@@ -26,6 +26,8 @@ public class StoryController : MonoBehaviour
     public bool hasCigarette;
     public bool hasIcecream;
 
+    public bool startStory;
+
     GameObject player;
 
     // Variables for individual npcs
@@ -34,47 +36,54 @@ public class StoryController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         filthiness = 100;
+        startStory = true;
     }
 
     private void Update()
     {
-        time += timeSpeed * Time.deltaTime;
-        ennui += ennuiSpeed * Time.deltaTime;
-
-        if (filthiness > 100)
+        if (startStory)
         {
-            filthiness = 100;
+            time += timeSpeed * Time.deltaTime;
+            ennui += ennuiSpeed * Time.deltaTime;
+
+            if (filthiness > 100)
+            {
+                filthiness = 100;
+            }
         }
     }
 
     private void OnGUI()
     {
-        GUI.skin.label.fontSize = 20;
-        GUI.Label(new Rect(0, 0, 100, 30), string.Concat("Odor: ", Mathf.FloorToInt(filthiness).ToString()));
-        GUI.Label(new Rect(0, 30, 100, 30), string.Concat("Ennui: ", Mathf.FloorToInt(ennui).ToString()));
-
-
-        int hour = Mathf.FloorToInt(time);
-        int minutes = Mathf.FloorToInt((time - hour) * 60);
-        hour += 10;
-        if (hour > 24)
+        if (startStory)
         {
-            hour -= 24;
-        }
+            GUI.skin.label.fontSize = 20;
+            GUI.Label(new Rect(0, 0, 100, 30), string.Concat("Odor: ", Mathf.FloorToInt(filthiness).ToString()));
+            GUI.Label(new Rect(0, 30, 100, 30), string.Concat("Ennui: ", Mathf.FloorToInt(ennui).ToString()));
 
-        string AMPM = "AM";
 
-        if (hour > 11)
-        {
-            AMPM = "PM";
-        }
-        
-        if (hour > 12)
-        {
-            hour -= 12;
-        }
+            int hour = Mathf.FloorToInt(time);
+            int minutes = Mathf.FloorToInt((time - hour) * 60);
+            hour += 10;
+            if (hour > 24)
+            {
+                hour -= 24;
+            }
 
-        GUI.Label(new Rect(Screen.width - 100, 0, 100, 30), string.Concat(hour.ToString("00"), ":", minutes.ToString("00"), " ", AMPM));
+            string AMPM = "AM";
+
+            if (hour > 11)
+            {
+                AMPM = "PM";
+            }
+
+            if (hour > 12)
+            {
+                hour -= 12;
+            }
+
+            GUI.Label(new Rect(Screen.width - 100, 0, 100, 30), string.Concat(hour.ToString("00"), ":", minutes.ToString("00"), " ", AMPM));
+        }
     }
 
     public void Smoke()

@@ -37,6 +37,15 @@ public class OldLady : SpeakerController
             conversedBefore = true;
         }
         //else if (likeAmount < 10)
+        else if (story.hasIcecream)
+        {
+            currentConversation = -2;
+            story.hasIcecream = false;
+        }
+        else if (likeAmount >= 20)
+        {
+            currentConversation = 7;
+        }
         else
         {
             currentConversation = ConversationUtilities.randomUnused(usedHateConversations);
@@ -65,6 +74,51 @@ public class OldLady : SpeakerController
 
     protected override bool Speak()
     {
+        if (currentConversation == -2)
+        {
+            switch (convCounter)
+            {
+                case 0:
+                    textbox.NewTextbox("You brought ice cream for me?", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 1:
+                    textbox.NewChoice(new string[] { "Of course!", "Well, actually..."}, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 2:
+                    if (selection == 0)
+                    {
+                        textbox.NewTextbox("No one has ever done something like this for me!", pic, gameObject.GetComponent<SpeakerController>());
+                    } else
+                    {
+                        textbox.NewTextbox("Oh... It's for someone else?\nI guess that's to be expected...", pic, gameObject.GetComponent<SpeakerController>());
+                    }
+                    break;
+                case 3:
+                    if (selection == 0)
+                    {
+                        textbox.NewTextbox("One time I was in the park with my husband.\nHe was carrying two ice cream cones.", pic, gameObject.GetComponent<SpeakerController>());
+                    } else
+                    {
+                        return true;
+                    }
+                    break;
+                case 4:
+                    textbox.NewTextbox("I got so excited!\nFinally my ice cream eating dream could come true.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 5:
+                    textbox.NewTextbox("It turns out both ice creams were for him.\nI didn't get any.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 6:
+                    textbox.NewTextbox("You must be able to imagine the joy I'm feeling,\nlooking at this ice cream.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 7:
+                    textbox.NewTextbox("Thank you so much!", pic, gameObject.GetComponent<SpeakerController>());
+                    likeAmount += 20;
+                    break;
+                case 8:
+                    return true;
+            }
+        }
         if (currentConversation == 0)
         {
             switch (convCounter)
@@ -452,6 +506,17 @@ public class OldLady : SpeakerController
                     textbox.NewTextbox("That's the kind of person you are.", pic, gameObject.GetComponent<SpeakerController>());
                     break;
                 case 29:
+                    return true;
+            }
+        }
+        else if (currentConversation == 7)
+        {
+            switch (convCounter)
+            {
+                case 0:
+                    textbox.NewTextbox("You know, maybe you are a good person.\nIf only you didn't smell so bad.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 1:
                     return true;
             }
         }

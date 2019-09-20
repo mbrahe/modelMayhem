@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Matt Test Scene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Intro.unity
+    guid: 132699d1abd80884e8fd87b49fcb0a38
+  - enabled: 1
+    path: Assets/Scenes/HellHall.unity
+    guid: 841225ba3eaa29143a9c2e087f11d761
   m_configObjects: {}

@@ -22,7 +22,6 @@ public class NPCInteractionController : MonoBehaviour
     {
         if (coll.collider.tag == "Player" && !speaker.isTalking)
         {
-            Debug.Log("Hello");
             speaker.StartSpeaking();
         }
     }

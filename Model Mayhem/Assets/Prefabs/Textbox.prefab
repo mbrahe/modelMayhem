@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530292cf60c86a9429f600a599b27022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textPeriod: 0.02
   boxWidth: 0.8
   boxHeight: 0.2
   boxYPos: 0.75
