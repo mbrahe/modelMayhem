@@ -125,7 +125,7 @@ MonoBehaviour:
   ySpeed: 0
   stunLength: 0.6
   energyMax: 0.8
-  energyRegainSpeed: 2
+  energyRegainSpeed: 0.8
   energy: 0
 --- !u!58 &1308367308
 CircleCollider2D:

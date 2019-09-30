@@ -14,6 +14,7 @@ public class StoryController : MonoBehaviour
 
     public float filthiness; // Ranges from 0 to 100
     public float ennui;
+    public float exhaustion;
     public float coolness;    // Ranges from 0 to 100
 
     // Discrete story actions
