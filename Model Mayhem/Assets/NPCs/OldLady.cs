@@ -14,6 +14,8 @@ public class OldLady : SpeakerController
     bool conversedBefore;
     bool cottonCandy;
     bool cat;
+    bool icecream;
+    bool toothbrush;
 
     bool lying;
     bool seduction;
@@ -29,19 +31,27 @@ public class OldLady : SpeakerController
         story = GameObject.FindGameObjectWithTag("Story").GetComponent<StoryController>();
     }
 
-    protected override void SetupConversation()
+    protected override void SetupConversation(string topic)
     {
-        if (!conversedBefore)
+        Debug.Log(topic);
+        if (topic == "Ice Cream" && !icecream)
+        {
+            currentConversation = -2;
+            conversedBefore = true;
+            icecream = true;
+        }
+        else if (topic == "Toothbrush" && !toothbrush)
+        {
+            currentConversation = -3;
+            conversedBefore = true;
+            toothbrush = true;
+        }
+        else if (!conversedBefore)
         {
             currentConversation = 0;
             conversedBefore = true;
         }
         //else if (likeAmount < 10)
-        else if (story.hasIcecream)
-        {
-            currentConversation = -2;
-            story.hasIcecream = false;
-        }
         else if (likeAmount >= 20)
         {
             currentConversation = 7;
@@ -74,6 +84,32 @@ public class OldLady : SpeakerController
 
     protected override bool Speak()
     {
+        if (currentConversation == -3)
+        {
+            switch (convCounter)
+            {
+                case 0:
+                    textbox.NewTextbox("Oh you found me a toothbrush! Thank you so much.\nThis makes my life far easier.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 1:
+                    textbox.NewTextbox("You know, there is a man near here renowned for how often he brushes his teeth.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 2:
+                    textbox.NewTextbox("Everytime he enters a bathroom he takes out his toothbrush\nand starts brushing as hard as he can.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 3:
+                    textbox.NewTextbox("Some find it strange that he prefers to spit his used\ntoothpaste in the toilet.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 4:
+                    textbox.NewTextbox("He is very sanitary though. When he's done brushing his teeth he always\nwashes his toothbrush in the sink.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 5:
+                    textbox.NewTextbox("Anyways, why don't you two become friends?\nI'll give you his calling card and you can look for him.", pic, gameObject.GetComponent<SpeakerController>());
+                    break;
+                case 6:
+                    return true;
+            }
+        }
         if (currentConversation == -2)
         {
             switch (convCounter)
@@ -148,7 +184,7 @@ public class OldLady : SpeakerController
                     }
                     else
                     {
-                        textbox.NewTextbox("(Oh no, I'm lying again)\n(I better think of something.)", null, gameObject.GetComponent<SpeakerController>());
+                        textbox.NewChoice(new string[] { "A hug", "A secret!" }, gameObject.GetComponent<SpeakerController>());
                         lying = true;
                     }
                     break;
@@ -159,9 +195,13 @@ public class OldLady : SpeakerController
                     }
                     else
                     {
-                        // Some horrible horrible lies
-                        //textbox.NewChoice(new string[] { "A", "B" }, gameObject.GetComponent<SpeakerController>());
-                        return true;
+                        if (selection == 0)
+                        {
+                            textbox.NewTextbox("Don't touch me!\nIf you really want to help me then find me a toothbrush.", pic, gameObject.GetComponent<SpeakerController>());
+                        } else if (selection == 1)
+                        {
+                            textbox.NewTextbox("I'm not interested in any secret you could possibly have.\nWhat I really need is a toothbrush.", pic, gameObject.GetComponent<SpeakerController>());
+                        }
                     }
                     break;
                 case 5:
@@ -179,6 +219,9 @@ public class OldLady : SpeakerController
                         {
                             textbox.NewTextbox("You do!\nI'm glad you recognize that", pic, gameObject.GetComponent<SpeakerController>());
                         }
+                    } else
+                    {
+                        textbox.NewTextbox("Normally I carry a toothbrush with me everywhere I go.\nToday, however, I forget my toothbrush at home.", pic, gameObject.GetComponent<SpeakerController>());
                     }
                     break;
                 case 6:
@@ -192,6 +235,9 @@ public class OldLady : SpeakerController
                         {
                             return true;
                         }
+                    } else
+                    {
+                        return true;
                     }
                     break;
                 case 7:

@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Intro.unity
     guid: 132699d1abd80884e8fd87b49fcb0a38
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HellHall.unity
     guid: 841225ba3eaa29143a9c2e087f11d761
+  - enabled: 1
+    path: Assets/Scenes/V2/test.unity
+    guid: 526e3ff4153963244bee55f037e33aeb
   m_configObjects: {}

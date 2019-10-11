@@ -36,7 +36,7 @@ public class StoryController : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        filthiness = 100;
+        filthiness = 20;
         startStory = true;
     }
 

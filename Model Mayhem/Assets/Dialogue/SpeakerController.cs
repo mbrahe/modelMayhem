@@ -18,13 +18,13 @@ public class SpeakerController : MonoBehaviour
         }
     }
 
-    public virtual void StartSpeaking()
+    public virtual void StartSpeaking(string topic)
     {
-        SetupConversation();
+        SetupConversation(topic);
         Next();
     }
 
-    protected virtual void SetupConversation()
+    protected virtual void SetupConversation(string topic)
     {
         return;
     }

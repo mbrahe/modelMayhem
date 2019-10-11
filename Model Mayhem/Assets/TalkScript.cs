@@ -17,7 +17,7 @@ public class TalkScript : MonoBehaviour
     {
         if (!speaker.isTalking)
         {
-            speaker.StartSpeaking();
+            speaker.StartSpeaking("");
             //spoke = true;
         }
     }

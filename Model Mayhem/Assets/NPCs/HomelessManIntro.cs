@@ -20,7 +20,7 @@ public class HomelessManIntro : SpeakerController
         fade = GetComponent<FadeController>();
     }
 
-    protected override void SetupConversation()
+    protected override void SetupConversation(string topic)
     {
         if (!talkedBefore)
         {

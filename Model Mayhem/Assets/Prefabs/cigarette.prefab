@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2490656470513929411}
   - component: {fileID: 2490656470513929437}
   - component: {fileID: 2490656470513929436}
+  - component: {fileID: 6016392415814600441}
   m_Layer: 0
   m_Name: cigarette
   m_TagString: Untagged
@@ -108,5 +109,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8ed3da58a54c1a49a509a711496e081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6016392415814600441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2490656470513929408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa03de8acd456554b848e3f19e9e43a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -14,7 +14,7 @@ public class SomeGuy : SpeakerController
         usedConversations = new bool[3];
     }
 
-    protected override void SetupConversation()
+    protected override void SetupConversation(string topic)
     {
         currentConversation = ConversationUtilities.randomUnused(usedConversations);
         if (currentConversation != -1)

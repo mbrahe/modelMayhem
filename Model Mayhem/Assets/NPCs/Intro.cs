@@ -14,10 +14,10 @@ public class Intro : SpeakerController
     private void Start()
     {
         usedConversations = new bool[3];
-        StartSpeaking();
+        StartSpeaking("");
     }
 
-    protected override void SetupConversation()
+    protected override void SetupConversation(string topic)
     {
         currentConversation = 0;
     }

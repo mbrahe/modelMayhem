@@ -22,7 +22,16 @@ public class NPCInteractionController : MonoBehaviour
     {
         if (coll.collider.tag == "Player" && !speaker.isTalking)
         {
-            speaker.StartSpeaking();
+            Debug.Log("hello");
+            speaker.StartSpeaking("");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Item" && !speaker.isTalking)
+        {
+            speaker.StartSpeaking(collision.gameObject.GetComponent<ItemController>().itemType);
         }
     }
 }

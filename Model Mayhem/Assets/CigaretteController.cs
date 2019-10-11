@@ -21,13 +21,16 @@ public class CigaretteController : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            if (!story.hasCigarette)
+            if (story != null)
             {
-                story.hasCigarette = true;
-            }
-            else
-            {
-                story.Smoke();
+                if (!story.hasCigarette)
+                {
+                    story.hasCigarette = true;
+                }
+                else
+                {
+                    story.Smoke();
+                }
             }
             Destroy(gameObject);
         }
