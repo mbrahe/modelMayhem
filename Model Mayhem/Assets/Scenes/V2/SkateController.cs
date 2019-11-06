@@ -43,6 +43,11 @@ public class SkateController : MonoBehaviour
     {
         rb.AddForce(acceleration * inputDirection.normalized, ForceMode2D.Impulse);
         rb.AddForce(-friction * rb.velocity.normalized);
+
+        if (rb.velocity.magnitude < .05f)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

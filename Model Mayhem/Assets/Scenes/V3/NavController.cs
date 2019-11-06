@@ -15,7 +15,7 @@ public class NavController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 2);
